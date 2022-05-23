@@ -12,7 +12,8 @@
 #   2: Failed to parse commandline options
 #   3: TP-Link Smartplug hostname or IP address not given
 #   4: Zabbix server hostname or IP address not given
-#   5: Failed to retrieve or send an item from Smartplug/to Zabbix server
+#   5: One or more required binaries are missing
+#   6: Failed to retrieve or send an item from Smartplug/to Zabbix server
 #
 # log file                                      : no
 # logrotate                                     : no
@@ -31,10 +32,16 @@
 # . Various
 #
 # Changelog:
+# 23.05.2022:
+#  + Added check for the return code of tplSmartplugQuery::init
+#  + Introduced exit code in case tplSmartplugQuery::init fails
+#  ~ Changed previously exit code 5 to 6 in order to be consistent throughout the exit codes
+#  ~ Bumped version to 1.1
+#
 # 23.05.2022: . Initial
 #
-# version: 1.0
-VERSION=1.0
+# version: 1.1
+VERSION=1.1
 
 # option definitions for getopt
 __LONG_OPTIONS="hostname:,zabbix-server:,help,verbose"
@@ -347,6 +354,10 @@ done
 
 # initialize the script
 tplSmartplugQuery::init
+returnCode="${?}"
+[[ "${returnCode}" -eq 0 ]] || {
+  exit 5;
+};
 
 # if any item failed, remember to exit with != 0
 declare -i itemFailed=1
@@ -370,7 +381,7 @@ done
   for rc in "${itemFailedReturnCodes[@]}"; do
     echo " - ${rc}"
   done
-  exit 5;
+  exit 6;
 };
 
 exit 0;
