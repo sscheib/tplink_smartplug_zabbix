@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-05-23T14:53:55Z</date>
+    <groups>
+        <group>
+            <name>Templates/Smarthome</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template TP-Link Smartplug</template>
+            <name>Template TP-Link Smartplug</name>
+            <groups>
+                <group>
+                    <name>Templates/Smarthome</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>TP-Link Smartplug HS110</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Active Mode</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[active_mode]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Alias</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[alias]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Current Amperage</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[current_ma]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>ampere</units>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Device ID</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[deviceId]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Development Name</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[dev_name]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Error Code</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[err_code]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last()}&lt;&gt;0</expression>
+                            <name>Smartplug Error</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Feature</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[feature]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Firmware ID</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[fwId]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hardware ID</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[hwId]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Hardware Version</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[hw_ver]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Icon Hash</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[icon_hash]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Latitude</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[latitude_i]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>LED Status (1: on, 0: off)</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[led_off]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Longitude</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[longitude_i]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>MAC</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[mac]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Model</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[model]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Next Action</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[next_action]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>OEM ID</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[oemId]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Uptime</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[on_time]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Current Power Usage</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[power_mw]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>!watt</units>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Relay state</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[relay_state]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Signal Strength</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[rssi]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>db</units>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Firmware Version</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[sw_ver]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{diff()}=1</expression>
+                            <name>Firmware changed</name>
+                            <priority>INFO</priority>
+                            <manual_close>YES</manual_close>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>Total Kilowatt Hours</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[total_wh]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>!kwh</units>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Type</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[type]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Updating</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[updating]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Current Voltage</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug_hs110[voltage_mv]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <value_type>FLOAT</value_type>
+                    <units>volt</units>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug HS110</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+    <graphs>
+        <graph>
+            <name>Status</name>
+            <graph_items>
+                <graph_item>
+                    <sortorder>1</sortorder>
+                    <color>1A7C11</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[voltage_mv]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>2</sortorder>
+                    <color>F63100</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[current_ma]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>3</sortorder>
+                    <color>2774A4</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[power_mw]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>4</sortorder>
+                    <color>A54F10</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[total_wh]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>5</sortorder>
+                    <color>FC6EA3</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[led_off]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>6</sortorder>
+                    <color>6C59DC</color>
+                    <calc_fnc>ALL</calc_fnc>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[rssi]</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>7</sortorder>
+                    <color>C7A72D</color>
+                    <item>
+                        <host>Template TP-Link Smartplug</host>
+                        <key>tplink_smartplug_hs110[err_code]</key>
+                    </item>
+                </graph_item>
+            </graph_items>
+        </graph>
+    </graphs>
+</zabbix_export>
