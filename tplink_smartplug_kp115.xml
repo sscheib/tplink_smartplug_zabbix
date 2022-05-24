@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2022-05-24T16:24:35Z</date>
+    <groups>
+        <group>
+            <name>Smarthome Devices</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template TP-Link Smartplug KP115</template>
+            <name>Template TP-Link Smartplug KP115</name>
+            <groups>
+                <group>
+                    <name>Smarthome Devices</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>TP-Link Smartplug KP115</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>NTC State</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug[ntc_state]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>1095d</trends>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug KP115</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>obd_src</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug[obd_src]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug KP115</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Status</name>
+                    <type>TRAP</type>
+                    <key>tplink_smartplug[status]</key>
+                    <delay>0</delay>
+                    <history>365d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>TP-Link Smartplug KP115</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
