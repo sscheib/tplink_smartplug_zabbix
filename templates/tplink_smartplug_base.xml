@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>5.0</version>
-    <date>2022-05-24T16:24:15Z</date>
+    <date>2022-05-24T21:21:55Z</date>
     <groups>
         <group>
             <name>Templates/Smarthome</name>
@@ -310,6 +310,13 @@
                             <name>TP-Link Smartplug Base</name>
                         </application>
                     </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{nodata({$SMARTPLUG_MAX_NO_DATA})}&lt;&gt;0</expression>
+                            <name>No data received for {$SMARTPLUG_MAX_NO_DATA}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
                 </item>
                 <item>
                     <name>Relay state</name>
@@ -420,6 +427,13 @@
                     </applications>
                 </item>
             </items>
+            <macros>
+                <macro>
+                    <macro>{$SMARTPLUG_MAX_NO_DATA}</macro>
+                    <value>30m</value>
+                    <description>Time in minutes until a trigger is fired if no data has been received from the Smartplug</description>
+                </macro>
+            </macros>
         </template>
     </templates>
     <graphs>
