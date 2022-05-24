@@ -32,6 +32,11 @@
 # . Various
 #
 # Changelog:
+# 24.05.2022:
+#  + Added the ability to use the environment variable VERBOSE to enable
+#    verbostity (additionally to --verbose)
+#  ~ Bumped version to 1.2
+# 
 # 23.05.2022:
 #  + Added check for the return code of tplSmartplugQuery::init
 #  + Introduced exit code in case tplSmartplugQuery::init fails
@@ -40,8 +45,8 @@
 #
 # 23.05.2022: . Initial
 #
-# version: 1.1
-VERSION=1.1
+# version: 1.2
+VERSION=1.2
 
 # option definitions for getopt
 __LONG_OPTIONS="hostname:,zabbix-server:,help,verbose"
@@ -49,6 +54,9 @@ __SHORT_OPTIONS="z:,n:,h,v"
 
 # verbose output, disabled by default
 declare -i __VERBOSE=1
+[[ -z "${VERBOSE}" ]] || {
+  __VERBOSE=0
+}
 
 # items the TP-Link smartplug can deliver values to
 declare -ar __ITEMS=(
