@@ -1,6 +1,6 @@
 # tplink_smartplug_zabbix
 ## Overview
-This "project" provides a way of querying data from a TP-Link HS110 Smartplug [^1] and sending it to a Zabbix server via `zabbix_sender`.
+This "project" provides a way of querying data from a TP-Link HS110 Smartplug [^1] (or other compatible smartplug, see list below) and sending it to a Zabbix server via `zabbix_sender`.
 It makes use of the excellent python-kasa framework [^2], which provides a convenient way of querying the smartplug via a simple binary (kasa)
 
 Currently supported Smartplugs:
