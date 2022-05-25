@@ -1,16 +1,16 @@
 # tplink_smartplug_zabbix
 ## Overview
-This "project" provides a way of querying data from a TP-Link HS110 Smartplug [1] and sending it to a Zabbix server via zabbix_sender.
-It makes use of the excellent python-kasa framework [2], which provides a convenient way of querying the smartplug via a simple binary (kasa)
+This "project" provides a way of querying data from a TP-Link HS110 Smartplug [^1] and sending it to a Zabbix server via `zabbix_sender`.
+It makes use of the excellent python-kasa framework [^2], which provides a convenient way of querying the smartplug via a simple binary (kasa)
 
 Currently supported Smartplugs:
 - TP-Link HS110 (EU)
 - TP-Link KP115 (EU)
 
-It is very likely that the same models, which have been produced for the market outside the EU are working is well, but since I have no means of testing that, they are explicitly listed as EU variants. Feel free to test other models and add them as contribution!
+It is very likely that the same models, which have been produced for the market outside the EU are working as well, but since I have no means of testing that, they are explicitly listed as EU variants. Feel free to test other models and add them as contribution!
 
-[1]: https://www.tp-link.com/en/home-networking/smart-plug/hs110/
-[2]: https://github.com/python-kasa/python-kasa
+[^1]: https://www.tp-link.com/en/home-networking/smart-plug/hs110/
+[^2]: https://github.com/python-kasa/python-kasa
 
 ## Getting started
 ### Command-line usage
@@ -18,9 +18,11 @@ It is very likely that the same models, which have been produced for the market 
 *  Install `python-kasa` via `pip install python-kasa`
 *  Import `templates/tplink_smartplug_base.xml` to your Zabbix instance and additionally (if needed) `templates/tplink_smartplug_kp115.xml`
 *  Assign the template to a host
-*  Run `bash tplink_smartplug_hs110.sh --hostname <smartplug.ip.or.hostname> --zabbix-server <zabbix.ip.or.hostname>`
+*  Run `bash tplink_smartplug_hs110.sh --host <smartplug.ip.or.hostname> --zabbix-server <zabbix.ip.or.hostname>`
 
 ### Container usage
+* A container is available at [hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix](https://hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix)
+
 #### podman run
 * Using `podman run`, the following command will spawn a container, gather the values, send it to Zabbix and gets destroyed afterwards:
 `podman run --rm -e 'ZBX_SERVER=<zabbix.fqdn>' -e "SMARTPLUG_HOST=<smartplug.fqdn>" steffenscheib/tplink_smartplug_zabbix`
@@ -58,7 +60,7 @@ services:
 *  `./containerfiles/init.sh` - Init script for the container that takes care of transforming environment variables to actual commandline options for `tplink_smartplug.sh`
 *  `./templates/tplink_smartplug_base.xml` - Zabbix base template to make use of already created items. This is the base set of items which seem to be common across multiple models (tested between HS110 and KP115 - both in the EU variant). Various inventory items are populated (such as MAC)
 *  `./templates/tplink_smartplug_kp115.xml` - Zabbix template which basically extends the base template to support all items that are available on the KP115 (EU) variant
-*  `Containerfile` - Containerfile used to build the actual container image available at [https://hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix](hub.docker.com)
+*  `Containerfile` - Containerfile used to build the actual container image available at [hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix](https://hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix)
 *  `README.md` - This readme file
 *  `LICENSE` - The GPLv2 license
 
