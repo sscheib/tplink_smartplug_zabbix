@@ -33,6 +33,11 @@
 # . Various
 #
 # Changelog:
+# 25.05.2022:
+#  - Removed unnecessary call to unset mapItem 
+#  - Fixed documentation of tplSmartplugQuery::gather_values
+#  ~ Bumped version to 1.4
+#
 # 24.05.2022:
 #  ~ Renamed function gather_values to tplSmartplugQuery::gather_values to be consistent throughout 
 #    the code
@@ -54,8 +59,8 @@
 #
 # 23.05.2022: . Initial
 #
-# version: 1.3
-VERSION=1.3
+# version: 1.4
+VERSION=1.4
 
 # option definitions for getopt
 __LONG_OPTIONS="host:,zabbix-server:,help,verbose"
@@ -360,7 +365,7 @@ function tplSmartplugQuery::gather_values() {
 
   # everything went fine
   return 0;
-} #; tplSmartplugQuery::gather_values ( <item>, <host>, <zabbix_server> )
+} #; tplSmartplugQuery::gather_values ( <item>, <host>, <zabbix_server>, [mapItem] )
 
 function tplSmartplugQuery::determine_hardware_model () {
   [[ -n "${1}" ]] || {
@@ -507,9 +512,6 @@ for model in "${!__HARDWARE_MODEL_ADDITIONAL_ITEMS[@]}"; do
 
   # iterate over the items
   for item in "${items[@]}"; do
-    # unset mapItem in case it is still set
-    [[ -n "${mapItem}" ]] && unset mapItem
-
     # set the mapItem to be item by default and override it only if required
     mapItem="${item}"
 
