@@ -5,7 +5,7 @@ RUN pip3.8 install python-kasa dumb-init
 
 # setup init
 RUN mkdir /init
-ADD container_files/init.sh /init/init.sh
+ADD containerfiles/init.sh /init/init.sh
 RUN chmod 755 /init/init.sh
 
 # setup /app
