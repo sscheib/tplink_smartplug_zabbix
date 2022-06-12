@@ -33,6 +33,13 @@
 # . Various
 #
 # Changelog:
+# 12.06.2022:
+#  + Added the possibility to specify the name of the host object in Zabbix from the smartplug
+#    Note: If not specified, it will use the value passed via -n/--host
+#  - Fixed documentation of tplSmartplugQuery::gather_values
+#  - Minor fixes
+#  ~ Bumped version to 1.5
+#
 # 25.05.2022:
 #  - Removed unnecessary call to unset mapItem 
 #  - Fixed documentation of tplSmartplugQuery::gather_values
@@ -59,12 +66,12 @@
 #
 # 23.05.2022: . Initial
 #
-# version: 1.4
-VERSION=1.4
+# version: 1.5
+VERSION=1.5
 
 # option definitions for getopt
-__LONG_OPTIONS="host:,zabbix-server:,help,verbose"
-__SHORT_OPTIONS="z:,n:,h,v"
+__LONG_OPTIONS="host:,zabbix-host:,zabbix-server:,help,verbose"
+__SHORT_OPTIONS="n:,a:,z:,h,v"
 
 # verbose output, disabled by default
 declare -i __VERBOSE=1
@@ -242,7 +249,8 @@ function tplSmartplugQuery::init () {
 #<  $1> | item                                  | string      | Item to query from the smartplug
 #<  $2> | host                                  | string      | Hostname or IP address of the smartplug
 #<  $3> | zabbixServer                          | string      | Hostname or IP address of the Zabbix server
-#[  $4] | mapItem                               | string      | Name of the key the item should be mapped to
+#<  $4> | zabbixHost                            | string      | Name of the host object in Zabbix for the smartplug
+#[  $5] | mapItem                               | string      | Name of the key the item should be mapped to
 #---
 # Global variables:
 #---
@@ -261,7 +269,8 @@ function tplSmartplugQuery::init () {
 # (return)   1 | Parameter $1 (item) not given
 # (return)   2 | Parameter $2 (host) not given
 # (return)   3 | Parameter $3 (zabbixServer) not given
-# (return)   4 | Unknown item to query retrieved
+# (return)   4 | Parameter $4 (zabbixHost) not given
+# (return)   5 | Sending values to Zabbix failed
 #####
 function tplSmartplugQuery::gather_values() {
   [[ -n "${1}" ]] || {
@@ -279,10 +288,15 @@ function tplSmartplugQuery::gather_values() {
   };
   declare zabbixServer="${3}"
 
-  # set the mapItem as default to the retrieving item and override if $4 is given
+  [[ -n "${4}" ]] || {
+    return 4;
+  };
+  declare zabbixHost="${4}"
+
+  # set the mapItem as default to the retrieving item and override if $5 is given
   declare mapItem="${item}"
-  [[ -z "${4}" ]] || {
-    mapItem="${4}"
+  [[ -z "${5}" ]] || {
+    mapItem="${5}"
   };
 
   declare value=""
@@ -352,20 +366,20 @@ function tplSmartplugQuery::gather_values() {
   esac
 
   if [[ "${__VERBOSE}" -ne 0 ]]; then
-    echo "- tplink_smartplug[${mapItem}] ${value}" | zabbix_sender -i - -s "${host}" -z "${zabbixServer}" >> /dev/null || {
+    echo "- tplink_smartplug[${mapItem}] ${value}" | zabbix_sender -i - -s "${zabbixHost}" -z "${zabbixServer}" >> /dev/null || {
       # sending values to Zabbix failed
       return 5;
     };
   else
-    echo "- tplink_smartplug[${mapItem}] ${value}" | zabbix_sender -i - -s "${host}" -z "${zabbixServer}" -vv || {
+    echo "- tplink_smartplug[${mapItem}] ${value}" | zabbix_sender -i - -s "${zabbixHost}" -z "${zabbixServer}" -vv || {
       # sending values to Zabbix failed
-      return 6;
+      return 5;
     };
   fi
 
   # everything went fine
   return 0;
-} #; tplSmartplugQuery::gather_values ( <item>, <host>, <zabbix_server>, [mapItem] )
+} #; tplSmartplugQuery::gather_values ( <item>, <host>, <zabbixServer>, <zabbixHost> [mapItem] )
 
 function tplSmartplugQuery::determine_hardware_model () {
   [[ -n "${1}" ]] || {
@@ -399,9 +413,11 @@ function tplSmartplugQuery::determine_hardware_model () {
 function tplSmartplugQuery::usage ( ) {
   echo "Usage of "$(basename "${0}")""
   echo "Available command line options:"
-  echo "-z: IP address or hostname of a Zabbix server to send the values to"
-  echo "-n: IP address or hostname of a TPLink Smartplug to query"
-  echo "-h: Print this message"
+  echo "--zabbix-server OR -z: IP address or hostname of a Zabbix server to send the values to"
+  echo "--host OR -n         : IP address or hostname of a TPLink Smartplug to query"
+  echo "--zabbix-host OR -a  : Name of the TPLink Smartplug host object in Zabbix"
+  echo "--verbose OR -v      : Verbose output"
+  echo "--help OR -h         : Print this message"
 
   return 0;
 } #; tplSmartplugQuery::usage ()
@@ -444,7 +460,11 @@ while true; do
       exit 0;
     ;;
     -n|--host)
-      __HOSTNAME="$2"
+      __HOSTNAME="${2}"
+      shift 2
+    ;;
+    -a|--zabbix-host)
+      __ZABBIX_HOST="${2}"
       shift 2
     ;;
     -v|--verbose)
@@ -478,6 +498,11 @@ done
   exit 4;
 };
 
+[[ -n "${__ZABBIX_HOST}" ]] || {
+  echo "WARNING: Name of the TPLink Smartplug Zabbix host has not been given, will use given --host/-n value ('${__HOSTNAME}')" >&2;
+  __ZABBIX_HOST="${__HOSTNAME}"
+};
+
 # initialize the script
 tplSmartplugQuery::init
 returnCode="${?}"
@@ -491,7 +516,7 @@ declare -a itemFailedReturnCodes=()
 
 # iterate over all default items and send the data to Zabbix
 for item in "${__ITEMS[@]}"; do
-  tplSmartplugQuery::gather_values "${item}" "${__HOSTNAME}" "${__ZABBIX_SERVER}"
+  tplSmartplugQuery::gather_values "${item}" "${__HOSTNAME}" "${__ZABBIX_SERVER}" "${__ZABBIX_HOST}"
   returnCode="${?}"
 
   [[ "${returnCode}" -eq 0 ]] || {
@@ -522,7 +547,7 @@ for model in "${!__HARDWARE_MODEL_ADDITIONAL_ITEMS[@]}"; do
     };
 
     # finally gather and send the values to Zabbix    
-    tplSmartplugQuery::gather_values "${item}" "${__HOSTNAME}" "${__ZABBIX_SERVER}" "${mapItem}"
+    tplSmartplugQuery::gather_values "${item}" "${__HOSTNAME}" "${__ZABBIX_SERVER}" "${__ZABBIX_HOST}" "${mapItem}"
     returnCode="${?}"
     [[ "${returnCode}" -eq 0 ]] || {
       itemFailed=0;
