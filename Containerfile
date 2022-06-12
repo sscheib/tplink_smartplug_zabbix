@@ -95,4 +95,4 @@ RUN cd /tmp/ && \
 
 # Run the command on container startup
 ENTRYPOINT ["dumb-init", "--"]
-CMD ["/bin/sh", "-c", "/init/init.sh && exec /app/tplink_smartplug.sh --zabbix-server $ZBX_SERVER --host $SMARTPLUG_HOST"]
+CMD ["/bin/sh", "-c", "/init/init.sh && exec /app/tplink_smartplug.sh --zabbix-server $ZBX_SERVER --host $SMARTPLUG_HOST --zabbix-host $ZBX_HOST"]

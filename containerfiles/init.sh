@@ -8,3 +8,8 @@
   echo "ERROR: SMARTPLUG_HOST environment variable is not set!" >&2;
   exit 2;
 };
+
+[[ -n "${ZBX_HOST}" ]] || {
+  echo "WARNING: ZBX_HOST environment variable is not set!" >&2;
+  exit 3;
+};

@@ -18,14 +18,14 @@ It is very likely that the same models, which have been produced for the market 
 *  Install `python-kasa` via `pip install python-kasa`
 *  Import `templates/tplink_smartplug_base.xml` to your Zabbix instance and additionally (if needed) `templates/tplink_smartplug_kp115.xml`
 *  Assign the template to a host
-*  Run `bash tplink_smartplug_hs110.sh --host <smartplug.ip.or.hostname> --zabbix-server <zabbix.ip.or.hostname>`
+*  Run `bash tplink_smartplug_hs110.sh --host <smartplug.ip.or.hostname> --zabbix-server <zabbix.ip.or.hostname> [--zabbix-host <smartplug.host>]`
 
 ### Container usage
 * A container is available at [hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix](https://hub.docker.com/r/steffenscheib/tplink_smartplug_zabbix)
 
 #### podman run
 * Using `podman run`, the following command will spawn a container, gather the values, send it to Zabbix and gets destroyed afterwards:
-`podman run --rm -e 'ZBX_SERVER=<zabbix.fqdn>' -e "SMARTPLUG_HOST=<smartplug.fqdn>" steffenscheib/tplink_smartplug_zabbix`
+`podman run --rm -e 'ZBX_SERVER=<zabbix.fqdn>' -e "SMARTPLUG_HOST=<smartplug.fqdn>" -e "ZBX_HOST=<smartplug.host>" steffenscheib/tplink_smartplug_zabbix`
 
 #### docker-compose
 * Using `docker-compose`, the following example can be used to adapt it to your needs
@@ -38,6 +38,7 @@ services:
     environment:
       - 'ZBX_SERVER=zabbix.example.com'
       - 'SMARTPLUG_HOST=smartplug.example.com'
+      - 'ZBX_HOST=smartplug'
       - 'VERBOSE=true'
 ```
 * Using `docker-compose up -d`, the container will be spawned and gathers the values
